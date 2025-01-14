@@ -14,19 +14,25 @@
         </div>
         <form action="{{route('products.store') }}" method="POST">
             @csrf
+
             <label for="name">name</label>
             <input type="text" class="form-control" name="name">
+
             <label for="desc">Description</label>
             <input type="text" class="form-control" name="description" id="">
-            <div class="form-group">
-              <label for="">Category</label>
-              <select class="form-control" name="Ccategory" id="">
-                <option>?</option>
-                <option>??</option>
-                <option>???</option>
-              </select>
-            </div>
+
+            <label for="" class="form-label">Category</label>
+            <select name="category_id" class="form-control" required>
+            <option value="" disabled selected>Select a category</option>
+                @forelse ($Categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @empty
+                    <option value="" disabled selected>No category Available</option>
+                @endforelse
+            </select>
+            <label for="">Amount:</label>
             <input type="num" class="form-control" name="price">
+
             <button class="btn btn-primary">Create</button>
         </form>
     </div>
