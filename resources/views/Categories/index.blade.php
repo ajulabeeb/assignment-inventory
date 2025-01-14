@@ -4,6 +4,7 @@
 @section('container')
     <div class="container py-4">
         <div class="mb-4">
+
             <div class="row">
                 <div class="col">
                     <h3>Manage Categories</h3>
@@ -14,6 +15,20 @@
                 <div class="col-2 text-right">
                     <a href="{{route('categories.create')}}" class="btn btn-primary btn-sm">Create Category</a>
                 </div>
+            </div>
+
+            <div class="row">
+
+
+                @if(session('category-error'))
+
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" id="autoDismissAlert">
+                    <strong>Note!</strong> {{ session('category-error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+
+
+                @endif
             </div>
 
             <div class="row">
@@ -59,4 +74,19 @@
             </div>
         </div>
     </div>
+
+    <script>
+
+    setTimeout(() => {
+        const alertElement = document.getElementById('autoDismissAlert');
+        if (alertElement) {
+          const alert = new bootstrap.Alert(alertElement);
+          alert.close();
+        }
+      }, 3000); // 1500ms = 1.5 seconds
+    </script>
+
+
 @endsection
+
+

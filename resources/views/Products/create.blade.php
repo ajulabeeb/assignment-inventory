@@ -19,7 +19,7 @@
             <input type="text" class="form-control" name="name" required>
 
             <label for="desc">Description</label>
-            <input type="text" class="form-control" name="description" id="">
+            <textarea name="description" class="form-control" cols="30" rows="10"></textarea>
 
             <label for="" class="form-label">Category</label>
             <select name="category_id" class="form-control" required>

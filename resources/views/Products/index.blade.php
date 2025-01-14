@@ -6,6 +6,8 @@
     <div class="container py-4">
         <div class="mb-4">
             <div class="row">
+
+
                 <div class="col">
                     <h3>Manage Products</h3>
                 </div>
@@ -31,10 +33,10 @@
                     <tbody>
                         @forelse ($Products as $Product)
                         <tr>
-                            <td>{{ $Product->name}} </td>
-                            <td>{{ $Product->description}} </td>
-                            <td>{{ $Product->category->name}} </td>
-                            <td>{{ $Product->price}} </td>
+                            <td>{{ Str::title($Product->name) }} </td>
+                            <td>{{ Str::title($Product->description) }} </td>
+                            <td>{{ str::title($Product->category->name)}} </td>
+                            <td>NGN {{number_format($Product->price, 2)}} </td>
                             <td class="col-2 text-right">
                                 <a class="btn btn-info btn-sm" href="{{ route('products.edit', $Products) }}">Edit</a>
                                 <form action="{{ route('products.destroy', $Product) }}" method="POST" class="d-inline">
