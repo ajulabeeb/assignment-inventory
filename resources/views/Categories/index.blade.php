@@ -17,7 +17,7 @@
             </div>
 
             <div class="row">
-                <table class="table table-striped table-inverse table-responsive">
+                <table class="table table-bordered table-inverse table-responsive">
                     <thead class="thead-inverse">
                         <tr>
                             <th>s/n</th>
@@ -33,18 +33,26 @@
                                 <td>{{ $Category->name}} </td>
                                 <td>{{ $Category->description}} </td>
                                 <td class="col-2 text-right">
-                                    <button class="btn btn-info" href="{{ route('categories.edit', $Category->id) }}">Edit</button>
-                                    <button class="btn btn-danger" href="{{ route('categories.edit', $Category->id) }}">Delete</button>
+                                    <a class="btn btn-info btn-sm" href="{{ route('categories.edit', $Category) }}">Edit</a>
+                                    {{-- <button class="btn btn-danger" href="{{ route('categories.edit', $Category->id) }}">Delete</button> --}}
 
-                                    {{-- <form action="">
+                                    <form action="{{ route('categories.destroy', $Category) }}" method="POST" class="d-inline">
                                         @csrf
-                                        @method('DEESTROY')
-                                        <button class="btn btn-danger">Delete</button>
-                                    </form> --}}
+                                        @method('DELETE')
+                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                         @empty
-                            <tr colspan="5">NO DATA AVAILABLE FOR DISPLAY</tr>
+                            <tr>
+                                <td colspan="5">
+                                    <div class="text-center">
+                                        <p>
+                                            NO DATA AVAILABLE FOR DISPLAY
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
                         @endforelse
                     </tbody>
                 </table>

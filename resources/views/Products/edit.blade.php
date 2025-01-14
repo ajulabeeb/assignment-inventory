@@ -16,15 +16,18 @@
             @csrf
             <label for="name">name</label>
             <input type="text" class="form-control" name="name">
+
             <label for="desc">Description</label>
-            <input type="text" class="form-control" name="description" id="">
+            <textarea name="description" class="form-control" cols="30" rows="10"></textarea>
+
             <div class="form-group">
               <label for="">Category</label>
-              <select class="form-control" name="Ccategory" id="">
-                <option>?</option>
-                <option>??</option>
-                <option>???</option>
-              </select>
+              <select name="category_id" class="form-control" required>
+                <option value="" disabled selected>Select a category</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
             </div>
             <input type="num" class="form-control" name="price">
             <button class="btn btn-primary">Update</button>

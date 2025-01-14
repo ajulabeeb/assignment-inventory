@@ -2,19 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categories;
+use App\Models\Category;
+// use App\Models\Product;
 use Illuminate\Http\Request;
+
+
+
+
 
 class CategoryController extends Controller
 {
     public function index()
     {
-        $Categories = Categories::all();
+        $Categories = Category::all();
         return view('Categories.index', compact('Categories'));
     }
 
     public function create()
     {
+
         return view('Categories.create');
     }
 
@@ -22,10 +28,32 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name'=>'required|string|max:255',
-            'description' => 'nullable|string'
+            'description' => 'nullable|string',
         ]);
 
-        Categories::create($request->all());
+        Category::create($request->all());
+        return redirect()->route('categories.index');
+    }
+
+    public function edit(Category $Category)
+    {
+        return view('Categories.edit', compact('Category'));
+    }
+
+    public function update(Request $request, Category $Category)
+    {
+        $request->validate([
+            'name'=>'required|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        $Category->update($request->all());
+        return redirect()->route('categories.index');
+    }
+
+    public function destroy(Category $Category)
+    {
+        $Category->delete();
         return redirect()->route('categories.index');
     }
 }

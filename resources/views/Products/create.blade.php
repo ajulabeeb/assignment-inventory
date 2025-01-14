@@ -16,7 +16,7 @@
             @csrf
 
             <label for="name">name</label>
-            <input type="text" class="form-control" name="name">
+            <input type="text" class="form-control" name="name" required>
 
             <label for="desc">Description</label>
             <input type="text" class="form-control" name="description" id="">
@@ -30,8 +30,9 @@
                     <option value="" disabled selected>No category Available</option>
                 @endforelse
             </select>
-            <label for="">Amount:</label>
-            <input type="num" class="form-control" name="price">
+
+            <label for="">Price/Amount:</label>
+            <input type="number" class="form-control" name="price" required>
 
             <button class="btn btn-primary">Create</button>
         </form>
