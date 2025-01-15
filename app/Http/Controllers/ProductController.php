@@ -35,9 +35,10 @@ class ProductController extends Controller
         return redirect()->route('products.index');
     }
 
-    public function edit()
+    public function edit(Product $Product)
     {
-        return view('Products.edit');
+        $Categories = Category::all();
+        return view('Products.edit', compact('Product','Categories'));
     }
 
     public function update(Request $request, Product $product)
