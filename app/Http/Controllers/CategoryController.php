@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 // use App\Models\Product;
 use Illuminate\Http\Request;
@@ -17,18 +19,12 @@ class CategoryController extends Controller
 
     public function create()
     {
-
         return view('Categories.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-        $request->validate([
-            'name'=>'required|string|max:255',
-            'description' => 'nullable|string',
-        ]);
-
-        Category::create($request->all());
+        Category::create($request->validated());
         return redirect()->route('categories.index');
     }
 
@@ -37,14 +33,9 @@ class CategoryController extends Controller
         return view('Categories.edit', compact('Category'));
     }
 
-    public function update(Request $request, Category $Category)
+    public function update(UpdateCategoryRequest $request, Category $Category)
     {
-        $request->validate([
-            'name'=>'required|string|max:255',
-            'description' => 'nullable|string',
-        ]);
-
-        $Category->update($request->all());
+        $Category->update($request->validated());
         return redirect()->route('categories.index');
     }
 
